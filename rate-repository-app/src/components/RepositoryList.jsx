@@ -56,33 +56,16 @@ const repositories = [
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const RenderItem = ({ fullName, description, language }) => (
-  <View>
-    <Text>
-      {fullName}
-      {description}
-      {language}
-    </Text>
-  </View>
-);
-
 const RepositoryList = () => {
   return (
-    <View>
-      <FlatList
-        keyExtractor={(item) => item.id}
-        data={repositories}
-        ItemSeparatorComponent={ItemSeparator}
-        renderItem={({ item }) => (
-          <RenderItem
-            id={item.id}
-            fullName={item.fullName}
-            description={item.description}
-            language={item.language}
-          />
-        )}
-      />
-    </View>
+    <FlatList
+      data={repositories}
+      ItemSeparatorComponent={ItemSeparator}
+      // other props
+      renderItem={({ item, index, separators }) => (
+        <RepositoryItem props={item} />
+      )}
+    />
   );
 };
 
